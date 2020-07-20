@@ -12,6 +12,9 @@ public class Asciifier implements Transformer {
     private final int windowSize;
 
     public Asciifier(final int windowSize) {
+        if(windowSize == 0){
+            throw new RuntimeException("Please choose a greater window size than 0");
+        }
         this.windowSize = windowSize;
     }
 
