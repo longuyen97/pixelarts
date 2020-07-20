@@ -2,14 +2,18 @@ package de.longuyen;
 
 import de.longuyen.core.impl.Asciifier;
 import de.longuyen.core.Transformer;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 
 public class AsciifierTransformer {
-    public static void main(String[] args) {
-        Transformer transformer = new Asciifier(10);
+    @Test
+    public void testBasicSunFlower() {
+        Transformer transformer = new Asciifier(2);
         InputStream targetTestImage = AsciifierTransformer.class.getResourceAsStream("/sunflower.jpg");
+        Assertions.assertNotNull(targetTestImage);
         String result = transformer.convert(targetTestImage);
-        System.out.println(result);
+        Assertions.assertNotNull(result);
     }
 }

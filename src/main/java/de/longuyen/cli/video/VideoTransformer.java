@@ -1,4 +1,4 @@
-package de.longuyen.video;
+package de.longuyen.cli.video;
 
 public class VideoTransformer {
 }

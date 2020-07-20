@@ -1,4 +1,4 @@
-package de.longuyen.image;
+package de.longuyen.cli.image;
 
 public interface ImageTransformer {
 }

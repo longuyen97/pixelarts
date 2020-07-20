@@ -1,4 +1,4 @@
-package de.longuyen.video.impl;
+package de.longuyen.cli.video.impl;
 
 public class FrameBasedVideoTransformer {
 }

@@ -16,16 +16,30 @@ public class Asciifier implements Transformer {
     }
 
     private char index(final BufferedImage bufferedImage, final int y, final int x){
-        return 'a';
+        float averageGrayScale = 0.f;
+        for(int yi = y; yi < y + this.windowSize; yi++){
+            for(int xi = x; xi < x + this.windowSize; xi++){
+
+                int color = bufferedImage.getRGB(x, y);
+                int blue = color & 0xff;
+                int green = (color & 0xff00) >> 8;
+                int red = (color & 0xff0000) >> 16;
+                averageGrayScale += (blue + green + red) / 3.f;
+            }
+        }
+        averageGrayScale /= this.windowSize * this.windowSize;
+        int index = (int)((averageGrayScale / 256.f) * PIXEL_MAPPING.length());
+        return PIXEL_MAPPING.charAt(index);
     }
 
     public String convert(final InputStream file) {
         StringBuilder result = new StringBuilder();
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
-            for (int y = 0; y < bufferedImage.getWidth(); y += this.windowSize) {
-                for (int x = 0; x < bufferedImage.getHeight(); x += this.windowSize) {
+            for (int y = 0; (y + this.windowSize) < bufferedImage.getHeight(); y += this.windowSize) {
+                for (int x = 0; (x + this.windowSize) < bufferedImage.getWidth(); x += this.windowSize) {
                     result.append(index(bufferedImage, y, x));
+                    result.append(" ");
                 }
                 result.append("\n");
             }
