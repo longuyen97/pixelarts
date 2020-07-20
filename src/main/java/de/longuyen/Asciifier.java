@@ -22,6 +22,7 @@ public class Asciifier implements Transformer {
                 for (int x = 0; x < bufferedImage.getHeight(); x += this.windowSize) {
 
                 }
+                result.append("\n");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
