@@ -1,8 +1,7 @@
-package de.longuyen;
+package de.longuyen.core;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -14,13 +13,17 @@ public class Asciifier implements Transformer {
         this.windowSize = windowSize;
     }
 
+    private char index(final BufferedImage bufferedImage, final int y, final int x){
+        return 'a';
+    }
+
     public String convert(final InputStream file) {
         StringBuilder result = new StringBuilder();
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             for (int y = 0; y < bufferedImage.getWidth(); y += this.windowSize) {
                 for (int x = 0; x < bufferedImage.getHeight(); x += this.windowSize) {
-
+                    result.append(index(bufferedImage, y, x));
                 }
                 result.append("\n");
             }
