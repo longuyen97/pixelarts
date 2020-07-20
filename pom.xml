@@ -4,12 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <properties>
-        <maven.compiler.release>8</maven.compiler.release>
+        <maven.compiler.release>11</maven.compiler.release>
     </properties>
 
     <groupId>org.example</groupId>
     <artifactId>asciify</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>info.picocli</groupId>
+            <artifactId>picocli</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>

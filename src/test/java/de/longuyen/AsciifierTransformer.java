@@ -1,6 +1,6 @@
 package de.longuyen;
 
-import de.longuyen.core.Asciifier;
+import de.longuyen.core.impl.Asciifier;
 import de.longuyen.core.Transformer;
 
 import java.io.InputStream;

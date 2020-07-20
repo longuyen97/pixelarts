@@ -1,4 +1,6 @@
-package de.longuyen.core;
+package de.longuyen.core.impl;
+
+import de.longuyen.core.Transformer;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
