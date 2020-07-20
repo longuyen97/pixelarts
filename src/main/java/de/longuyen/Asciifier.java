@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class Asciifier implements Transformer {
     public static final String PIXEL_MAPPING = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~i!lI;:,^`. ";
@@ -13,7 +14,8 @@ public class Asciifier implements Transformer {
         this.windowSize = windowSize;
     }
 
-    public String convert(final File file) {
+    public String convert(final InputStream file) {
+        StringBuilder result = new StringBuilder();
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             for (int y = 0; y < bufferedImage.getWidth(); y += this.windowSize) {
@@ -24,5 +26,6 @@ public class Asciifier implements Transformer {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return result.toString();
     }
 }
