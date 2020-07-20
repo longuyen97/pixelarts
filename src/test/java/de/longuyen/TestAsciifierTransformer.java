@@ -14,11 +14,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class AsciifierTransformer {
+public class TestAsciifierTransformer {
     @Test
     public void testBasicSunFlower() {
         Transformer transformer = new Asciifier(2);
-        InputStream targetTestImage = AsciifierTransformer.class.getResourceAsStream("/sunflower.jpg");
+        InputStream targetTestImage = TestAsciifierTransformer.class.getResourceAsStream("/sunflower.jpg");
         Assertions.assertNotNull(targetTestImage);
         String result = transformer.convert(targetTestImage);
         Assertions.assertNotNull(result);

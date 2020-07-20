@@ -1,4 +1,4 @@
-package de.longuyen.cli.gif;
+package de.longuyen.gif;
 
 public interface GifTransformer {
 }
