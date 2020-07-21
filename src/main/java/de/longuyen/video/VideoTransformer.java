@@ -1,4 +1,5 @@
 package de.longuyen.video;
 
-public class VideoTransformer {
+public interface VideoTransformer {
+    void convert();
 }
