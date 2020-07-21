@@ -18,24 +18,27 @@ public class PlainImageTransformer implements ImageTransformer {
 
     @SneakyThrows
     @Override
-    public BufferedImage convert(final InputStream inputStream) {
+    public BufferedImage convert(final BufferedImage bufferedImage) {
         Transformer transformer = new Asciifier(windowSize);
-        String result = transformer.convert(inputStream);
+        String result = transformer.convert(bufferedImage);
         String[] lines = result.split("\n");
         if(lines.length > 0) {
-            BufferedImage image = new BufferedImage(lines[0].length(), lines.length, BufferedImage.TYPE_INT_RGB);
-            Graphics2D g2d = image.createGraphics();
-            g2d.setPaint(Color.red);
-            g2d.setFont(new Font("Serif", Font.BOLD, 1));
-            String s = "Hello, world!";
-            FontMetrics fm = g2d.getFontMetrics();
-            int x = image.getWidth() - fm.stringWidth(s) - 5;
-            int y = fm.getHeight();
-            g2d.drawString(s, x, y);
-            g2d.dispose();
+            BufferedImage image = new BufferedImage(bufferedImage.getWidth(), bufferedImage.getHeight(), BufferedImage.TYPE_INT_RGB);
+            Graphics2D graphics = image.createGraphics();
+            graphics.setColor (new Color(255, 255, 255));
+            graphics.fillRect ( 0, 0, bufferedImage.getWidth(), bufferedImage.getHeight());
+            graphics.setColor (new Color(0, 0, 0));
+            graphics.setFont(new Font("Calibri", Font.BOLD, this.windowSize));
+            for (int y = 0; y < lines.length; y++) {
+                String line = lines[y];
+                char [] pixels = line.toCharArray();
+                for (int x = 0; x < pixels.length; x++) {
+                    graphics.drawString(String.valueOf(pixels[x]), x * this.windowSize, y * this.windowSize);
+                }
+            }
             return image;
         }else {
-            return new BufferedImage(0, 0, BufferedImage.TYPE_INT_RGB);
+            return new BufferedImage(bufferedImage.getWidth(),  bufferedImage.getHeight(), BufferedImage.TYPE_INT_RGB);
         }
     }
 }

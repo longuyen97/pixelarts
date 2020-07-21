@@ -16,11 +16,12 @@ import java.io.InputStream;
 
 public class TestAsciifierTransformer {
     @Test
-    public void testBasicSunFlower() {
+    public void testBasicSunFlower() throws IOException {
         Transformer transformer = new Asciifier(2);
         InputStream targetTestImage = TestAsciifierTransformer.class.getResourceAsStream("/sunflower.jpg");
+        BufferedImage bufferedImage = ImageIO.read(targetTestImage);
         Assertions.assertNotNull(targetTestImage);
-        String result = transformer.convert(targetTestImage);
+        String result = transformer.convert(bufferedImage);
         Assertions.assertNotNull(result);
         System.out.println(result);
     }
@@ -37,8 +38,9 @@ public class TestAsciifierTransformer {
         ImageIO.write(bufferedImage, "jpeg", os);
         for(int i = 1; i < 100; i++) {
             InputStream is = new ByteArrayInputStream(os.toByteArray());
+            BufferedImage inputImage = ImageIO.read(is);
             Transformer transformer = new Asciifier(i);
-            String result = transformer.convert(is);
+            String result = transformer.convert(inputImage);
             Assertions.assertNotNull(result);
         }
     }
@@ -55,8 +57,9 @@ public class TestAsciifierTransformer {
         ImageIO.write(bufferedImage, "jpeg", os);
         for(int i = 1; i < 100; i++) {
             InputStream is = new ByteArrayInputStream(os.toByteArray());
+            BufferedImage inputImage = ImageIO.read(is);
             Transformer transformer = new Asciifier(i);
-            String result = transformer.convert(is);
+            String result = transformer.convert(inputImage);
             Assertions.assertNotNull(result);
         }
     }

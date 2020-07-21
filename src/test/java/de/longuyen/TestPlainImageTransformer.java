@@ -16,8 +16,9 @@ public class TestPlainImageTransformer {
     void testSunFlowerImage() throws IOException {
         ImageTransformer transformer = new PlainImageTransformer(2);
         InputStream targetTestImage = TestAsciifierTransformer.class.getResourceAsStream("/sunflower.jpg");
-        Assertions.assertNotNull(targetTestImage);
-        BufferedImage result = transformer.convert(targetTestImage);
+        BufferedImage bi = ImageIO.read(targetTestImage);
+        Assertions.assertNotNull(bi);
+        BufferedImage result = transformer.convert(bi);
         Assertions.assertNotNull(result);
         ImageIO.write(result, "png", new File("target/test.png"));
     }
