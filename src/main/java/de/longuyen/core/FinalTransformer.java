@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 /**
  * Interface for transforming an image file into a ascii work art
  */
-public interface Transformer {
+public interface FinalTransformer {
     /**
      * Convert the content of the input stream
      *

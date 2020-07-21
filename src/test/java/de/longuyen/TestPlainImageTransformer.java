@@ -1,5 +1,6 @@
 package de.longuyen;
 
+import de.longuyen.core.Parameters;
 import de.longuyen.image.ImageTransformer;
 import de.longuyen.image.impl.PlainImageTransformer;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +15,7 @@ import java.io.InputStream;
 public class TestPlainImageTransformer {
     @Test
     void testSunFlowerImage() throws IOException {
-        ImageTransformer transformer = new PlainImageTransformer(2);
+        ImageTransformer transformer = new PlainImageTransformer(new Parameters(2, 4));
         InputStream targetTestImage = TestAsciifierTransformer.class.getResourceAsStream("/sunflower.jpg");
         BufferedImage bi = ImageIO.read(targetTestImage);
         Assertions.assertNotNull(bi);
