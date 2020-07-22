@@ -21,8 +21,8 @@ Used to asciify images
         <td><img src="images/eilish-output.png" width="500"></td>
     </tr>
     <tr>
-        <td><img src="images/pikachu.jpg" width="500"></td>
-        <td><img src="images/pikachu-output.png" width="500"></td>
+        <td><img src="images/kakashi.jpg" width="500"></td>
+        <td><img src="images/kakashi-output.png" width="500"></td>
     </tr>
     <tr>
         <td><img src="images/aang.png" width="500"></td>
