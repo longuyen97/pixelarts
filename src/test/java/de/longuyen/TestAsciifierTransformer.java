@@ -1,8 +1,7 @@
 package de.longuyen;
 
-import de.longuyen.core.Parameters;
 import de.longuyen.core.impl.Asciifier;
-import de.longuyen.core.FinalTransformer;
+import de.longuyen.core.Transformer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -18,13 +17,12 @@ import java.io.InputStream;
 public class TestAsciifierTransformer {
     @Test
     public void testBasicSunFlower() throws IOException {
-        FinalTransformer transformer = new Asciifier(new Parameters(1, 2));
+        Asciifier transformer = new Asciifier(new Asciifier.Parameters(1, 2));
         InputStream targetTestImage = TestAsciifierTransformer.class.getResourceAsStream("/sunflower.jpg");
         BufferedImage bufferedImage = ImageIO.read(targetTestImage);
         Assertions.assertNotNull(targetTestImage);
-        String result = transformer.convert(bufferedImage);
+        String result = transformer.toAscii(bufferedImage);
         Assertions.assertNotNull(result);
-        System.out.println(result);
     }
 
     @Test
@@ -40,8 +38,8 @@ public class TestAsciifierTransformer {
         for(int i = 1; i < 100; i++) {
             InputStream is = new ByteArrayInputStream(os.toByteArray());
             BufferedImage inputImage = ImageIO.read(is);
-            FinalTransformer transformer = new Asciifier(new Parameters(1, i));
-            String result = transformer.convert(inputImage);
+            Asciifier transformer = new Asciifier(new Asciifier.Parameters(1, i));
+            String result = transformer.toAscii(inputImage);
             Assertions.assertNotNull(result);
         }
     }
@@ -59,8 +57,8 @@ public class TestAsciifierTransformer {
         for(int i = 1; i < 100; i++) {
             InputStream is = new ByteArrayInputStream(os.toByteArray());
             BufferedImage inputImage = ImageIO.read(is);
-            FinalTransformer transformer = new Asciifier(new Parameters(1, i));
-            String result = transformer.convert(inputImage);
+            Asciifier transformer = new Asciifier(new Asciifier.Parameters(1, i));
+            String result = transformer.toAscii(inputImage);
             Assertions.assertNotNull(result);
         }
     }

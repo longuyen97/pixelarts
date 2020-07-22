@@ -1,6 +1,6 @@
-# asciify
+# Pixel Arts
 
-Algorithm for ascifying images. 
+Algorithm for playing around with images. 
 
 ```
 Asciify

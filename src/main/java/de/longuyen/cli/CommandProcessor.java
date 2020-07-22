@@ -1,6 +1,6 @@
 package de.longuyen.cli;
 
-import de.longuyen.core.Parameters;
+import de.longuyen.core.impl.Asciifier;
 import de.longuyen.image.ImageTransformer;
 import de.longuyen.image.impl.PlainImageTransformer;
 import lombok.SneakyThrows;
@@ -24,7 +24,7 @@ public class CommandProcessor implements Runnable {
     @SneakyThrows
     @Override
     public void run() {
-        ImageTransformer imageTransformer = new PlainImageTransformer(new Parameters(interpolation, windowSize));
+        ImageTransformer imageTransformer = new PlainImageTransformer(new Asciifier.Parameters(interpolation, windowSize));
         BufferedImage bufferedImage = ImageIO.read(new File(file));
         BufferedImage output = imageTransformer.convert(bufferedImage);
         ImageIO.write(output, "png", new File("sunflower-pikachu-aang-eilish-kakashi-output.png"));
