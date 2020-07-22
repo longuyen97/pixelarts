@@ -54,6 +54,10 @@ public class Asciifier implements Transformer {
         float averageGrayScale = 0.f;
         for (int yi = y; yi < y + this.parameters.windowSize; yi++) {
             for (int xi = x; xi < x + this.parameters.windowSize; xi++) {
+
+                // Extracting the color.
+                // 32 Bit integer will contains ARGB images.
+                // Ignore the alpha value
                 int color = bufferedImage.getRGB(x, y);
                 int blue = color & 0xff;
                 int green = (color & 0xff00) >> 8;

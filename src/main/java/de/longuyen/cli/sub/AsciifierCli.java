@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-@CommandLine.Command(header = "asciify",  description = "Used to asciify images")
+@CommandLine.Command(name = "asciify", description = "Used to asciify images")
 public class AsciifierCli implements Runnable{
     @CommandLine.Option(names = {"--file", "-f"}, description = "Target image file for asciifying", required = true)
     private String file;
