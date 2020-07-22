@@ -27,6 +27,6 @@ public class CommandProcessor implements Runnable {
         ImageTransformer imageTransformer = new PlainImageTransformer(new Parameters(interpolation, windowSize));
         BufferedImage bufferedImage = ImageIO.read(new File(file));
         BufferedImage output = imageTransformer.convert(bufferedImage);
-        ImageIO.write(output, "png", new File("sunflower-pikachu-aang-output.png"));
+        ImageIO.write(output, "png", new File("sunflower-pikachu-aang-eilish-output.png"));
     }
 }

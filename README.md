@@ -1,9 +1,10 @@
 # asciify
 
-Algorithm for ascifying images. Usage:
+Algorithm for ascifying images. 
+
 ```
 Asciify
-Usage: <main class> -f=<file> [-i=<interpolation>] [-w=<windowSize>]
+Usage: java -jar asciify.jar -f=<file> [-i=<interpolation>] [-w=<windowSize>]
 Used to asciify images
   -f, --file=<file>   Target image file for asciifying
   -i, --interpolation=<interpolation>
@@ -12,10 +13,12 @@ Used to asciify images
                       How big should the window's size be
 ```
 
+### Demonstration
+
 <table border="1" width="100%">
     <tr>
-        <td><img src="images/sunflower.jpg" width="500"></td>
-        <td><img src="images/sunflower-output.png" width="500"></td>
+        <td><img src="images/eilish.jpg" width="500"></td>
+        <td><img src="images/eilish-output.png" width="500"></td>
     </tr>
     <tr>
         <td><img src="images/pikachu.jpg" width="500"></td>
