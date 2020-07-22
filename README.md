@@ -2,17 +2,6 @@
 
 Algorithm for playing around with images. 
 
-```
-Asciify
-Usage: java -jar asciify.jar -f=<file> [-i=<interpolation>] [-w=<windowSize>]
-Used to asciify images
-  -f, --file=<file>   Target image file for asciifying
-  -i, --interpolation=<interpolation>
-                      How much should the image be interpolated
-  -w, --window=<windowSize>
-                      How big should the window's size be
-```
-
 ### Demonstration
 
 <table border="1" width="100%">

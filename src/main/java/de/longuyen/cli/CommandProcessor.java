@@ -1,6 +1,6 @@
 package de.longuyen.cli;
 
-import de.longuyen.core.impl.Asciifier;
+import de.longuyen.core.ascii.Asciifier;
 import de.longuyen.image.ImageTransformer;
 import de.longuyen.image.impl.PlainImageTransformer;
 import lombok.SneakyThrows;

@@ -1,7 +1,7 @@
 package de.longuyen;
 
 import de.longuyen.core.Transformer;
-import de.longuyen.core.impl.Asciifier;
+import de.longuyen.core.ascii.Asciifier;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
