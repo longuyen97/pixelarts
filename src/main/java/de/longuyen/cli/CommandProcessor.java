@@ -10,9 +10,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-@CommandLine.Command(version = "Help demo for picocli v2.0", header = "%nAutomatic Help Demo%n",
-        description = "Prints usage help and version help when requested.%n",
-        footer = "See AutomaticHelpDemo3 for the more compact syntax supported by picocli 3.0.")
+@CommandLine.Command(header = "Asciify",  description = "Used to asciify images")
 public class CommandProcessor implements Runnable {
     @CommandLine.Option(names = {"--file", "-f"}, description = "Target image file for asciifying", required = true)
     private String file;
