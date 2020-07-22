@@ -13,11 +13,6 @@
 
     <dependencies>
         <dependency>
-        <groupId>org.bytedeco</groupId>
-        <artifactId>javacv-platform</artifactId>
-        <version>1.5.3</version>
-    </dependency>
-        <dependency>
             <groupId>info.picocli</groupId>
             <artifactId>picocli</artifactId>
             <version>4.4.0</version>
