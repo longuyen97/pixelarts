@@ -40,6 +40,7 @@ public class SimpleVoronoi implements Transformer {
             points.add(new Vector2D(x, y));
         }
         List<Triangle2D> triangles = new VoronoiTriangulator().triangulate(points);
+
         graphics.setColor(new Color(0, 0, 0));
         for(Triangle2D triangle2D : triangles){
             graphics.drawLine((int)triangle2D.a.x, (int)triangle2D.a.y, (int)triangle2D.b.x, (int)triangle2D.b.y);
