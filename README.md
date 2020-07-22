@@ -2,6 +2,13 @@
 
 Algorithm for playing around with images. 
 
+```
+Usage: java -jar arts.jar [COMMAND]
+Commands:
+  asciify        Used to asciify images
+  voronoi        Used to triangulate images
+```
+
 ### Demonstration
 
 <table border="1" width="100%">
