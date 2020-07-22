@@ -1,7 +1,6 @@
-package de.longuyen;
+package de.longuyen.core.ascii;
 
 import de.longuyen.core.Transformer;
-import de.longuyen.core.ascii.Asciifier;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class TestPlainImageTransformer {
+public class TestAsciifierOnImageTransformer {
     @Test
     void testSunFlowerImage() throws IOException {
         Transformer transformer = new Asciifier(new Asciifier.Parameters(2, 4));

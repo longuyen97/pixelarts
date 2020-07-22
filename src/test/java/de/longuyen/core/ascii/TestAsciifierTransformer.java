@@ -1,6 +1,5 @@
-package de.longuyen;
+package de.longuyen.core.ascii;
 
-import de.longuyen.core.ascii.Asciifier;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

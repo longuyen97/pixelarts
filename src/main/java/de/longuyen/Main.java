@@ -1,7 +1,7 @@
 package de.longuyen;
 
-import de.longuyen.cli.CommandProcessor;
 import picocli.CommandLine;
+import de.longuyen.cli.CommandProcessor;
 
 public class Main {
     public static void main(String[] args) {
