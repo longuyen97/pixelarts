@@ -1,6 +1,7 @@
 # Pixel Arts
 
-Algorithm for playing around with images. 
+Algorithm for playing around with images. Assuming an image is just a matrix, you can do everything with an image which can
+also be done on a matrix.
 
 ```
 Usage: java -jar arts.jar [COMMAND]
