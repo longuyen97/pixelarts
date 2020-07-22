@@ -4,12 +4,17 @@ import org.junit.jupiter.api.Test;
 
 public class TestSimpleVoronoi {
     @Test
-    void testEdges(){
+    void testEdge2D(){
 
     }
 
     @Test
-    void testTriangles(){
+    void testTriangle2D(){
+
+    }
+
+    @Test
+    void testVector2D(){
 
     }
 }

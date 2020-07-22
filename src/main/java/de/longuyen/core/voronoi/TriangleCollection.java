@@ -123,4 +123,29 @@ public class TriangleCollection {
     public List<Triangle2D> getTriangles() {
         return triangles;
     }
+
+    public void legalizeEdge(Triangle2D triangle, Edge2D edge, Vector2D newVertex){
+        Triangle2D neighbourTriangle = findNeighbour(triangle, edge);
+
+        /*
+         * If the triangle has a neighbor, then legalize the edge
+         */
+        if (neighbourTriangle != null) {
+            if (neighbourTriangle.isPointInCircumcircle(newVertex)) {
+                remove(triangle);
+                remove(neighbourTriangle);
+
+                Vector2D noneEdgeVertex = neighbourTriangle.getNoneEdgeVertex(edge);
+
+                Triangle2D firstTriangle = new Triangle2D(noneEdgeVertex, edge.a, newVertex);
+                Triangle2D secondTriangle = new Triangle2D(noneEdgeVertex, edge.b, newVertex);
+
+                add(firstTriangle);
+                add(secondTriangle);
+
+                legalizeEdge(firstTriangle, new Edge2D(noneEdgeVertex, edge.a), newVertex);
+                legalizeEdge(secondTriangle, new Edge2D(noneEdgeVertex, edge.b), newVertex);
+            }
+        }
+    }
 }
