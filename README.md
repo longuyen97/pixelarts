@@ -14,8 +14,16 @@ Used to asciify images
 
 <table border="1" width="100%">
     <tr>
-        <td><img src="sunflower.jpg" width="500"></td>
-        <td><img src="output.png" width="500"></td>
+        <td><img src="images/sunflower.jpg" width="500"></td>
+        <td><img src="images/sunflower-output.png" width="500"></td>
+    </tr>
+    <tr>
+        <td><img src="images/pikachu.jpg" width="500"></td>
+        <td><img src="images/pikachu-output.png" width="500"></td>
+    </tr>
+    <tr>
+        <td><img src="images/aang.png" width="500"></td>
+        <td><img src="images/aang-output.png" width="500"></td>
     </tr>
 </table>
 
