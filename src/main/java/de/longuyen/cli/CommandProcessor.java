@@ -1,6 +1,14 @@
 package de.longuyen.cli;
 
+import de.longuyen.core.Parameters;
+import de.longuyen.image.ImageTransformer;
+import de.longuyen.image.impl.PlainImageTransformer;
+import lombok.SneakyThrows;
 import picocli.CommandLine;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 @CommandLine.Command(version = "Help demo for picocli v2.0", header = "%nAutomatic Help Demo%n",
         description = "Prints usage help and version help when requested.%n",
@@ -15,8 +23,12 @@ public class CommandProcessor implements Runnable {
     @CommandLine.Option(names = {"--window", "-w"}, description = "How big should the window's size be")
     private int windowSize = 3;
 
+    @SneakyThrows
     @Override
     public void run() {
-        System.out.println("test");
+        ImageTransformer imageTransformer = new PlainImageTransformer(new Parameters(interpolation, windowSize));
+        BufferedImage bufferedImage = ImageIO.read(new File(file));
+        BufferedImage output = imageTransformer.convert(bufferedImage);
+        ImageIO.write(output, "png", new File("output.png"));
     }
 }
