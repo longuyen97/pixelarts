@@ -3,14 +3,11 @@ package de.longuyen.core.voronoi;
 import de.longuyen.core.Transformer;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
-import java.util.*;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
+import java.util.*;
 
 public class SimpleVoronoi implements Transformer {
     private final Parameters parameters;
@@ -46,7 +43,6 @@ public class SimpleVoronoi implements Transformer {
     public BufferedImage convert(BufferedImage bufferedImage) {
         List<Triangle2D> triangles = new VoronoiTriangulator().triangulate(generatePoints(bufferedImage));
 
-        long before = System.currentTimeMillis();
         Map<Triangle2D, List<DoubleSummaryStatistics>> trianglesPixelsMap = new HashMap<>();
         for(int y = 0; y < bufferedImage.getHeight(); y++){
             for(int x = 0; x < bufferedImage.getWidth(); x++){
@@ -67,8 +63,6 @@ public class SimpleVoronoi implements Transformer {
                 }
             }
         }
-        long after = System.currentTimeMillis();
-        System.out.println(after - before);
 
         ColorModel cm = bufferedImage.getColorModel();
         boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();

@@ -14,10 +14,10 @@ import java.io.InputStream;
 public class TestSimpleVoronoi {
     @Test
     void testSimpleImage() throws IOException {
-        InputStream targetTestImage = TestSimpleVoronoi.class.getResourceAsStream("/eilish.jpg");
+        InputStream targetTestImage = TestSimpleVoronoi.class.getResourceAsStream("/sunflower.jpg");
         BufferedImage bufferedImage = ImageIO.read(targetTestImage);
 
-        BufferedImage trianglatedImage = new SimpleVoronoi(new SimpleVoronoi.Parameters(400)).convert(bufferedImage);
+        BufferedImage trianglatedImage = new SimpleVoronoi(new SimpleVoronoi.Parameters(50)).convert(bufferedImage);
         ImageIO.write(trianglatedImage, "png", new File("target/test.png"));
 
     }
