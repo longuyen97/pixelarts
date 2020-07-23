@@ -5,7 +5,7 @@ import de.longuyen.core.Transformer;
 import de.longuyen.core.kmean.KMean;
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "polygon", description = "Used to segment images with KMean algorithm")
+@CommandLine.Command(name = "kmean", description = "Used to segment images with KMean algorithm")
 public class KMeanCli extends Cli {
     @CommandLine.Option(names = {"--centers", "-c"}, description = "How many centers should there be")
     private int centers = 50;

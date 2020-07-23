@@ -52,3 +52,20 @@ Algorithm for playing around with images. Take a moment for a pause.
         <td><img src="images/mandelbrot-output.png" width="500"></td>
     </tr>
 </table>
+
+### K-Mean
+
+<table border="1" width="100%">
+    <tr>
+        <td><img src="images/ciri.jpg" width="500"></td>
+        <td><img src="images/ciri-output.jpg" width="500"></td>
+    </tr>
+    <tr>
+        <td><img src="images/detroit.jpg" width="500"></td>
+        <td><img src="images/detroit-output.jpg" width="500"></td>
+    </tr>
+    <tr>
+        <td><img src="images/baloon.jpg" width="500"></td>
+        <td><img src="images/baloon-output.jpg" width="500"></td>
+    </tr>
+</table>
