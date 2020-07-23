@@ -1,4 +1,6 @@
-package de.longuyen.core.voronoi;
+package de.longuyen.core.utils;
+
+import de.longuyen.core.utils.Vector2D;
 
 public class Edge2D {
     public Vector2D a;

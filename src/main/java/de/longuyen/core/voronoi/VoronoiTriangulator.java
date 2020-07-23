@@ -1,5 +1,8 @@
 package de.longuyen.core.voronoi;
 
+import de.longuyen.core.utils.Edge2D;
+import de.longuyen.core.utils.Vector2D;
+
 import java.util.List;
 
 public class VoronoiTriangulator {

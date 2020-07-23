@@ -1,6 +1,7 @@
 package de.longuyen.core.voronoi;
 
 import de.longuyen.core.Transformer;
+import de.longuyen.core.utils.Vector2D;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

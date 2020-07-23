@@ -2,11 +2,11 @@ package de.longuyen.cli.sub;
 
 import de.longuyen.cli.Cli;
 import de.longuyen.core.Transformer;
-import de.longuyen.core.polygon.Polygon;
+import de.longuyen.core.kmean.KMean;
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "polygon", description = "Used to segment images with Polygon algorithm")
-public class PolygonCli extends Cli {
+@CommandLine.Command(name = "polygon", description = "Used to segment images with KMean algorithm")
+public class KMeanCli extends Cli {
     @CommandLine.Option(names = {"--centers", "-c"}, description = "How many centers should there be")
     private int centers = 50;
 
@@ -15,6 +15,6 @@ public class PolygonCli extends Cli {
 
     @Override
     protected Transformer transformer() {
-        return new Polygon(new Polygon.Parameters(centers, iterations));
+        return new KMean(new KMean.Parameters(centers, iterations));
     }
 }

@@ -1,4 +1,4 @@
-package de.longuyen.core.voronoi;
+package de.longuyen.core.utils;
 
 public class Vector2D {
     public double x;

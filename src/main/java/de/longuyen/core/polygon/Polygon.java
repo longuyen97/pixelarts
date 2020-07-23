@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.*;
 
 public class Polygon implements Transformer {
-    private final Parameters parameters;
+    protected final Parameters parameters;
 
     public Polygon(Parameters parameters) {
         this.parameters = parameters;

@@ -1,4 +1,4 @@
-package de.longuyen.core.voronoi;
+package de.longuyen.core.utils;
 
 
 /**
