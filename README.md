@@ -14,8 +14,8 @@ Commands:
 
 <table border="1" width="100%">
     <tr>
-        <td><img src="images/turing.png" width="500"></td>
-        <td><img src="images/turing-output.png" width="500"></td>
+        <td><img src="images/japanese.jpeg" width="500"></td>
+        <td><img src="images/japanese-output.png" width="500"></td>
     </tr>
     <tr>
         <td><img src="images/eilish.jpg" width="500"></td>
