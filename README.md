@@ -14,12 +14,12 @@ Commands:
 
 <table border="1" width="100%">
     <tr>
-        <td><img src="images/eilish.jpg" width="500"></td>
-        <td><img src="images/eilish-output.png" width="500"></td>
+        <td><img src="images/turing.png" width="500"></td>
+        <td><img src="images/turing-output.png" width="500"></td>
     </tr>
     <tr>
-        <td><img src="images/kakashi.jpg" width="500"></td>
-        <td><img src="images/kakashi-output.png" width="500"></td>
+        <td><img src="images/eilish.jpg" width="500"></td>
+        <td><img src="images/eilish-output.png" width="500"></td>
     </tr>
     <tr>
         <td><img src="images/aang.png" width="500"></td>
@@ -35,7 +35,7 @@ Commands:
         <td><img src="images/hendrix-output.png" width="500"></td>
     </tr>
     <tr>
-        <td><img src="images/ritchie.png" width="500"></td>
+        <td><img src="images/ritchie.jpg" width="500"></td>
         <td><img src="images/ritchie-output.png" width="500"></td>
     </tr>
     <tr>
