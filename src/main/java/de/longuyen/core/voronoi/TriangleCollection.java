@@ -2,10 +2,15 @@ package de.longuyen.core.voronoi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class TriangleCollection {
     private final List<Triangle2D> triangles;
+
+    public TriangleCollection(List<Triangle2D> triangles) {
+        this.triangles = triangles;
+    }
 
     public TriangleCollection() {
         this.triangles = new ArrayList<>();
@@ -94,12 +99,17 @@ public class TriangleCollection {
         for (Triangle2D triangle : triangles) {
             edgeList.add(triangle.findNearestEdge(point));
         }
+        edgeList.sort(EdgeDistancePack::compareTo);
+        return edgeList.get(0).edge;
+    }
 
-        EdgeDistancePack[] edgeDistancePacks = new EdgeDistancePack[edgeList.size()];
-        edgeList.toArray(edgeDistancePacks);
-
-        Arrays.sort(edgeDistancePacks);
-        return edgeDistancePacks[0].edge;
+    public Triangle2D findNearestTriangle(Vector2D point){
+        List<Pair<Triangle2D, EdgeDistancePack>> edgeList = new ArrayList<>();
+        for (Triangle2D triangle : triangles) {
+            edgeList.add(new Pair<>(triangle, triangle.findNearestEdge(point)));
+        }
+        edgeList.sort(Comparator.comparing(Pair::getRight));
+        return edgeList.get(0).getLeft();
     }
 
     /**

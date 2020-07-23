@@ -6,7 +6,6 @@ package de.longuyen.core.voronoi;
  * given edge.
  */
 public class EdgeDistancePack implements Comparable<EdgeDistancePack> {
-
     public Edge2D edge;
     public double distance;
 
