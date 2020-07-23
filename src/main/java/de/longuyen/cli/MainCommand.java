@@ -1,10 +1,11 @@
 package de.longuyen.cli;
 
 import de.longuyen.cli.sub.AsciifierCli;
+import de.longuyen.cli.sub.KMeanCli;
 import de.longuyen.cli.sub.VoronoiCli;
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "arts", subcommands = {AsciifierCli.class, VoronoiCli.class})
+@CommandLine.Command(name = "arts", subcommands = {AsciifierCli.class, VoronoiCli.class, KMeanCli.class})
 public class MainCommand implements Runnable {
     @Override
     public void run() {

@@ -1,7 +1,8 @@
 package de.longuyen.core.voronoi;
 
+import de.longuyen.core.utils.Pair;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 

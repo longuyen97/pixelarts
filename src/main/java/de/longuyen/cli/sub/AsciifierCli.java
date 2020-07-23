@@ -22,10 +22,10 @@ public class AsciifierCli implements Runnable{
 
     @SneakyThrows
     @Override
-    public void run() {
-        Transformer imageTransformer = new Asciifier(new Asciifier.Parameters(interpolation, windowSize));
-        BufferedImage bufferedImage = ImageIO.read(new File(file));
-        BufferedImage output = imageTransformer.convert(bufferedImage);
-        ImageIO.write(output, "png", new File("output.png"));
+        public void run() {
+            Transformer imageTransformer = new Asciifier(new Asciifier.Parameters(interpolation, windowSize));
+            BufferedImage bufferedImage = ImageIO.read(new File(file));
+            BufferedImage output = imageTransformer.convert(bufferedImage);
+            ImageIO.write(output, "png", new File("output.png"));
     }
 }
