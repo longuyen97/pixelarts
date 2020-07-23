@@ -1,31 +1,6 @@
 # Pixel Arts
 
-Algorithm for playing around with images. Assuming an image is just a matrix, you can do everything with an image which can
-also be done on a matrix.
-
-```
-Usage: java -jar arts.jar [COMMAND]
-Commands:
-  asciify        Used to asciify images
-  voronoi        Used to triangulate images
-```
-
-### ASCIIFY
-
-<table border="1" width="100%">
-    <tr>
-        <td><img src="images/japanese.jpeg" width="500"></td>
-        <td><img src="images/japanese-output.png" width="500"></td>
-    </tr>
-    <tr>
-        <td><img src="images/eilish.jpg" width="500"></td>
-        <td><img src="images/eilish-output.png" width="500"></td>
-    </tr>
-    <tr>
-        <td><img src="images/mandelbrot.jpg" width="500"></td>
-        <td><img src="images/mandelbrot-output.png" width="500"></td>
-    </tr>
-</table>
+Algorithm for playing around with images. Take a moment for a pause.
 
 ### Simple Triangulation
 
@@ -58,5 +33,22 @@ Commands:
     <tr>
         <td><img src="images/hamburg.jpg" width="500"></td>
         <td><img src="images/hamburg-output.png" width="500"></td>
+    </tr>
+</table>
+
+### ASCIIFY
+
+<table border="1" width="100%">
+    <tr>
+        <td><img src="images/japanese.jpeg" width="500"></td>
+        <td><img src="images/japanese-output.png" width="500"></td>
+    </tr>
+    <tr>
+        <td><img src="images/eilish.jpg" width="500"></td>
+        <td><img src="images/eilish-output.png" width="500"></td>
+    </tr>
+    <tr>
+        <td><img src="images/mandelbrot.jpg" width="500"></td>
+        <td><img src="images/mandelbrot-output.png" width="500"></td>
     </tr>
 </table>
