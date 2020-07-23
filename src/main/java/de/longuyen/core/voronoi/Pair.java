@@ -1,7 +1,5 @@
 package de.longuyen.core.voronoi;
 
-import lombok.Data;
-
 import java.util.Objects;
 
 public class Pair<A, B> {

@@ -25,18 +25,11 @@ public class Triangle2D {
     public boolean contains(Vector2D point) {
         double pab = point.sub(a).cross(b.sub(a));
         double pbc = point.sub(b).cross(c.sub(b));
-
         if (!hasSameSign(pab, pbc)) {
             return false;
         }
-
         double pca = point.sub(c).cross(a.sub(c));
-
-        if (!hasSameSign(pab, pca)) {
-            return false;
-        }
-
-        return true;
+        return hasSameSign(pab, pca);
     }
 
     /**
@@ -142,11 +135,8 @@ public class Triangle2D {
     /**
      * Computes the closest point on the given edge to the specified point.
      *
-     * @param edge
-     *            The edge on which we search the closest point to the specified
-     *            point
-     * @param point
-     *            The point to which we search the closest point on the edge
+     * @param edge The edge on which we search the closest point to the specified point
+     * @param point The point to which we search the closest point on the edge
      * @return The closest point on the given edge to the specified point
      */
     private Vector2D computeClosestPoint(Edge2D edge, Vector2D point) {

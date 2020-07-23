@@ -3,11 +3,14 @@ package de.longuyen.core.voronoi;
 import de.longuyen.core.Transformer;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.util.*;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class SimpleVoronoi implements Transformer {
     private final Parameters parameters;
@@ -24,13 +27,7 @@ public class SimpleVoronoi implements Transformer {
         }
     }
 
-    @Override
-    public BufferedImage convert(BufferedImage bufferedImage) {
-        ColorModel cm = bufferedImage.getColorModel();
-        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
-        WritableRaster raster = bufferedImage.copyData(null);
-        BufferedImage returnValue = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
-
+    public List<Vector2D> generatePoints(final BufferedImage bufferedImage){
         Random random = new Random();
         Set<Vector2D> points = new HashSet<>();
         for(int i = 0; i < parameters.points; i++){
@@ -42,44 +39,47 @@ public class SimpleVoronoi implements Transformer {
         points.add(new Vector2D(0, bufferedImage.getHeight() - 1));
         points.add(new Vector2D(bufferedImage.getWidth() - 1, 0));
         points.add(new Vector2D(bufferedImage.getWidth() - 1, bufferedImage.getHeight() - 1));
-        List<Triangle2D> triangles = new VoronoiTriangulator().triangulate(new ArrayList<>(points));
+        return new ArrayList<>(points);
+    }
 
-        Map<Triangle2D, List<Integer>> trianglesPixelsMap = new HashMap<>();
-        for(Triangle2D triangle2D : triangles){
-            trianglesPixelsMap.put(triangle2D, new ArrayList<>());
-        }
+    @Override
+    public BufferedImage convert(BufferedImage bufferedImage) {
+        List<Triangle2D> triangles = new VoronoiTriangulator().triangulate(generatePoints(bufferedImage));
 
+        long before = System.currentTimeMillis();
+        Map<Triangle2D, List<DoubleSummaryStatistics>> trianglesPixelsMap = new HashMap<>();
         for(int y = 0; y < bufferedImage.getHeight(); y++){
             for(int x = 0; x < bufferedImage.getWidth(); x++){
                 Vector2D currentPixel = new Vector2D(x, y);
-                for(final Triangle2D triangle2D : triangles){
-                    if(triangle2D.contains(currentPixel)){
-                        trianglesPixelsMap.get(triangle2D).add(bufferedImage.getRGB(x, y));
+                for(Triangle2D triangle2D : triangles){
+                    if(triangle2D.contains(currentPixel)) {
+                        int color = bufferedImage.getRGB(x, y);
+                        int blue = color & 0xff;
+                        int green = (color & 0xff00) >> 8;
+                        int red = (color & 0xff0000) >> 16;
+                        List<DoubleSummaryStatistics> colorStatistics = Arrays.asList(new DoubleSummaryStatistics(), new DoubleSummaryStatistics(), new DoubleSummaryStatistics());
+                        colorStatistics.get(0).accept(blue);
+                        colorStatistics.get(1).accept(green);
+                        colorStatistics.get(2).accept(red);
+                        trianglesPixelsMap.put(triangle2D, colorStatistics);
                         break;
                     }
                 }
             }
         }
+        long after = System.currentTimeMillis();
+        System.out.println(after - before);
 
-        Map<Triangle2D, Color> trianglesColorMap = new HashMap<>();
-        for(Map.Entry<Triangle2D, List<Integer>> entry: trianglesPixelsMap.entrySet()){
-            double redAverage = 0.f;
-            double greenAverage = 0.f;
-            double blueAverage = 0.f;
-            for(Integer color : entry.getValue()) {
-                int blue = color & 0xff;
-                int green = (color & 0xff00) >> 8;
-                int red = (color & 0xff0000) >> 16;
-                redAverage += red;
-                greenAverage += green;
-                blueAverage += blue;
-            }
-            redAverage /= entry.getValue().size();
-            greenAverage /= entry.getValue().size();
-            blueAverage /= entry.getValue().size();
-
-            assert redAverage < 256 && greenAverage < 256 && blueAverage < 256 : "" + redAverage + ", " + greenAverage + ", " + blueAverage + ", " + entry.getValue().size() + ", " + entry.getKey().toString();
-            trianglesColorMap.put(entry.getKey(), new Color((int)redAverage, (int)greenAverage, (int)blueAverage));
+        ColorModel cm = bufferedImage.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = bufferedImage.copyData(null);
+        BufferedImage returnValue = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+        Map<Triangle2D, Color> trianglesColors = new HashMap<>();
+        for (Map.Entry<Triangle2D, List<DoubleSummaryStatistics>> entry : trianglesPixelsMap.entrySet()) {
+            DoubleSummaryStatistics sumBlue = entry.getValue().get(0);
+            DoubleSummaryStatistics sumGreen = entry.getValue().get(1);
+            DoubleSummaryStatistics sumRed = entry.getValue().get(2);
+            trianglesColors.put(entry.getKey(), new Color((int)sumRed.getAverage(), (int)sumGreen.getAverage(), (int)sumBlue.getAverage()));
         }
 
         TriangleCollection triangleCollection = new TriangleCollection(triangles);
@@ -87,7 +87,7 @@ public class SimpleVoronoi implements Transformer {
             for (int x = 0; x < returnValue.getWidth(); x++) {
                 boolean dangling = true;
                 Vector2D currentPixel = new Vector2D(x, y);
-                for (Map.Entry<Triangle2D, Color> entry : trianglesColorMap.entrySet()) {
+                for (Map.Entry<Triangle2D, Color> entry : trianglesColors.entrySet()) {
                     if (entry.getKey().contains(currentPixel)) {
                         returnValue.setRGB(x, y, entry.getValue().getRGB());
                         dangling = false;
@@ -96,7 +96,7 @@ public class SimpleVoronoi implements Transformer {
                 }
                 if (dangling){
                     Triangle2D nearestTriangle = triangleCollection.findNearestTriangle(currentPixel);
-                    returnValue.setRGB(x, y, trianglesColorMap.get(nearestTriangle).getRGB());
+                    returnValue.setRGB(x, y, trianglesColors.get(nearestTriangle).getRGB());
                 }
             }
         }
