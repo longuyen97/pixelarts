@@ -34,14 +34,14 @@ public class SimpleVoronoi implements Transformer {
         Random random = new Random();
         Set<Vector2D> points = new HashSet<>();
         for(int i = 0; i < parameters.points; i++){
-            int x = random.nextInt(bufferedImage.getWidth());
-            int y = random.nextInt(bufferedImage.getHeight());
+            int x = random.nextInt(bufferedImage.getWidth() - 1);
+            int y = random.nextInt(bufferedImage.getHeight() - 1);
             points.add(new Vector2D(x, y));
         }
         points.add(new Vector2D(0, 0));
-        points.add(new Vector2D(0, bufferedImage.getHeight()));
-        points.add(new Vector2D(bufferedImage.getWidth(), 0));
-        points.add(new Vector2D(bufferedImage.getWidth(), bufferedImage.getHeight()));
+        points.add(new Vector2D(0, bufferedImage.getHeight() - 1));
+        points.add(new Vector2D(bufferedImage.getWidth() - 1, 0));
+        points.add(new Vector2D(bufferedImage.getWidth() - 1, bufferedImage.getHeight() - 1));
         List<Triangle2D> triangles = new VoronoiTriangulator().triangulate(new ArrayList<>(points));
 
         Map<Triangle2D, List<Integer>> trianglesPixelsMap = new HashMap<>();
