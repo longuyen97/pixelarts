@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 @CommandLine.Command(name = "voronoi", description = "Used to triangulate images")
-public class SimpleVoronoiCli implements Runnable {
+public class VoronoiCli implements Runnable {
     @CommandLine.Option(names = {"--file", "-f"}, description = "Target image file for triangulating", required = true)
     private String file;
 
