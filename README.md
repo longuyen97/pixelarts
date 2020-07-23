@@ -22,8 +22,8 @@ Commands:
         <td><img src="images/eilish-output.png" width="500"></td>
     </tr>
     <tr>
-        <td><img src="images/aang.png" width="500"></td>
-        <td><img src="images/aang-output.png" width="500"></td>
+        <td><img src="images/mandelbrot.jpg" width="500"></td>
+        <td><img src="images/mandelbrot-output.png" width="500"></td>
     </tr>
 </table>
 
@@ -41,5 +41,22 @@ Commands:
     <tr>
         <td><img src="images/ritchie.jpg" width="500"></td>
         <td><img src="images/ritchie-output.png" width="500"></td>
+    </tr>
+</table>
+
+### Polygon
+
+<table border="1" width="100%">
+    <tr>
+        <td><img src="images/elephants.jpg" width="500"></td>
+        <td><img src="images/elephants-output.png" width="500"></td>
+    </tr>
+    <tr>
+        <td><img src="images/bee.jpg" width="500"></td>
+        <td><img src="images/bee-output.png" width="500"></td>
+    </tr>
+    <tr>
+        <td><img src="images/hamburg.jpg" width="500"></td>
+        <td><img src="images/hamburg-output.png" width="500"></td>
     </tr>
 </table>

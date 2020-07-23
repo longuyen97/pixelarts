@@ -1,4 +1,4 @@
-package de.longuyen.core.kmean;
+package de.longuyen.core.polygon;
 
 import de.longuyen.core.Transformer;
 import de.longuyen.core.utils.ReturnFunction;
@@ -11,10 +11,10 @@ import java.awt.image.WritableRaster;
 import java.util.List;
 import java.util.*;
 
-public class KMean implements Transformer {
+public class Polygon implements Transformer {
     private final Parameters parameters;
 
-    public KMean(Parameters parameters) {
+    public Polygon(Parameters parameters) {
         this.parameters = parameters;
     }
 
@@ -31,7 +31,7 @@ public class KMean implements Transformer {
     public Map<List<Point>, Color> generatePoints(final BufferedImage bufferedImage) {
         List<Point> centers = new ArrayList<>();
         Random random = new Random();
-        for(int i = 0; i < KMean.this.parameters.centers; i++) {
+        for(int i = 0; i < Polygon.this.parameters.centers; i++) {
             centers.add(new Point(random.nextInt(bufferedImage.getWidth()), random.nextInt(bufferedImage.getHeight())));
         }
 
@@ -58,7 +58,7 @@ public class KMean implements Transformer {
             return ret;
         };
 
-        for(int i = 0; i < KMean.this.parameters.iterations; i++){
+        for(int i = 0; i < Polygon.this.parameters.iterations; i++){
             // Calculate identites for every pixel.
 
             Map<Point, List<Point>> identities = calculateIdentity.apply();

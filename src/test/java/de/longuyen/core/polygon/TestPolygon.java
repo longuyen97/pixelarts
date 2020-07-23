@@ -1,4 +1,4 @@
-package de.longuyen.core.kmean;
+package de.longuyen.core.polygon;
 
 import de.longuyen.core.Transformer;
 import de.longuyen.core.ascii.TestAsciifierTransformer;
@@ -11,10 +11,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class TestKMean {
+public class TestPolygon {
     @Test
-    void testKmean() throws IOException {
-        Transformer transformer = new KMean(new KMean.Parameters(50, 100));
+    void testPolygon() throws IOException {
+        Transformer transformer = new Polygon(new Polygon.Parameters(50, 100));
         InputStream targetTestImage = TestAsciifierTransformer.class.getResourceAsStream("/sunflower.jpg");
         BufferedImage bi = ImageIO.read(targetTestImage);
         Assertions.assertNotNull(bi);
