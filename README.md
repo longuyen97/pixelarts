@@ -10,7 +10,7 @@ Commands:
   voronoi        Used to triangulate images
 ```
 
-### Demonstration
+### ACIIFY
 
 <table border="1" width="100%">
     <tr>
@@ -27,3 +27,11 @@ Commands:
     </tr>
 </table>
 
+### Triangulation
+
+<table border="1" width="100%">
+    <tr>
+        <td><img src="images/eilish-fullhd.jpg" width="500"></td>
+        <td><img src="images/eilish-fullhd-output.png" width="500"></td>
+    </tr>
+</table>
