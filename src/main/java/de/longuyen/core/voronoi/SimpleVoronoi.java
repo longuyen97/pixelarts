@@ -90,7 +90,7 @@ public class SimpleVoronoi implements Transformer {
                 }
                 if (dangling){
                     Triangle2D nearestTriangle = triangleCollection.findNearestTriangle(currentPixel);
-                    returnValue.setRGB(x, y, trianglesColors.get(nearestTriangle).getRGB());
+                    returnValue.setRGB(x, y, trianglesColors.getOrDefault(nearestTriangle, new Color(255, 255, 255)).getRGB());
                 }
             }
         }
