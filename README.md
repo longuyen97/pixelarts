@@ -1,6 +1,7 @@
-# Pixel Arts
+[![Build Status](https://travis-ci.com/longuyen97/pixelarts.svg?token=skDcu5tZxPtyDMyKnKYN&branch=master)](https://travis-ci.com/longuyen97/pixelarts)
+# Pixel Arts 
 
-Algorithm for playing around with images. Take a moment for a pause.
+Algorithm for playing around with images. Take a moment for a pause and a deep breath.
 
 ### Simple Triangulation
 
