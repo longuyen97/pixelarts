@@ -5,6 +5,10 @@ import de.longuyen.core.utils.Vector2D;
 
 import java.util.List;
 
+/**
+ * The correct name of the algorithm is Bowyer-Watson-Algorithm. Details can be found at
+ * https://en.wikipedia.org/wiki/Bowyer%E2%80%93Watson_algorithm
+ */
 public class VoronoiTriangulator {
     public List<Triangle2D> triangulate(final List<Vector2D> points){
         TriangleCollection triangleCollection = new TriangleCollection();
