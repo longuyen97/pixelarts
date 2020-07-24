@@ -1,11 +1,8 @@
 package de.longuyen.core.voronoi;
 
-import de.longuyen.core.ascii.TestAsciifierTransformer;
 import org.junit.jupiter.api.Test;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +16,5 @@ public class TestSimpleVoronoi {
 
         BufferedImage trianglatedImage = new SimpleVoronoi(new SimpleVoronoi.Parameters(50)).convert(bufferedImage);
         ImageIO.write(trianglatedImage, "png", new File("target/test.png"));
-
     }
 }

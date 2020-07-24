@@ -19,5 +19,4 @@ public class Edge2D {
         this.a = a;
         this.b = b;
     }
-
 }

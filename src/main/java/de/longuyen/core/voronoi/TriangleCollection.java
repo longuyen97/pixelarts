@@ -125,7 +125,6 @@ public class TriangleCollection {
      */
     public void removeTrianglesUsing(Vector2D vertex) {
         List<Triangle2D> trianglesToBeRemoved = new ArrayList<>();
-
         for (Triangle2D triangle : triangles) {
             if (triangle.hasVertex(vertex)) {
                 trianglesToBeRemoved.add(triangle);
@@ -140,7 +139,6 @@ public class TriangleCollection {
 
     public void legalizeEdge(Triangle2D triangle, Edge2D edge, Vector2D newVertex){
         Triangle2D neighbourTriangle = findNeighbour(triangle, edge);
-
         /*
          * If the triangle has a neighbor, then legalize the edge
          */

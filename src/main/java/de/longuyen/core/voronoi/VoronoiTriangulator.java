@@ -20,19 +20,14 @@ public class VoronoiTriangulator {
          * to be very large. Otherwise the triangulation is not convex.
          */
         double maxOfAnyCoordinate = 0.0d;
-
         for (Vector2D vector : points) {
             maxOfAnyCoordinate = Math.max(Math.max(vector.x, vector.y), maxOfAnyCoordinate);
         }
-
         maxOfAnyCoordinate *= 16.0d;
-
         Vector2D p1 = new Vector2D(0.0d, 3.0d * maxOfAnyCoordinate);
         Vector2D p2 = new Vector2D(3.0d * maxOfAnyCoordinate, 0.0d);
         Vector2D p3 = new Vector2D(-3.0d * maxOfAnyCoordinate, -3.0d * maxOfAnyCoordinate);
-
         Triangle2D superTriangle = new Triangle2D(p1, p2, p3);
-
         triangleCollection.add(superTriangle);
 
         /*
