@@ -10,13 +10,19 @@ import java.awt.image.WritableRaster;
 import java.util.List;
 import java.util.*;
 
+/**
+ * Using voronoi algorithm to triangulate an image and segment it
+ */
 public class SimpleVoronoi implements Transformer {
-    private final Parameters parameters;
+    protected final Parameters parameters;
 
     public SimpleVoronoi(Parameters parameters) {
         this.parameters = parameters;
     }
 
+    /**
+     * Parameters class for voronoi algorithm
+     */
     public static class Parameters {
         public final int points;
 
@@ -25,6 +31,11 @@ public class SimpleVoronoi implements Transformer {
         }
     }
 
+    /**
+     * Generate random points for triangulation
+     * @param bufferedImage input image
+     * @return random points on the image
+     */
     public List<Vector2D> generatePoints(final BufferedImage bufferedImage){
         Random random = new Random();
         Set<Vector2D> points = new HashSet<>();
@@ -44,20 +55,18 @@ public class SimpleVoronoi implements Transformer {
     public BufferedImage convert(BufferedImage bufferedImage) {
         List<Triangle2D> triangles = new VoronoiTriangulator().triangulate(generatePoints(bufferedImage));
 
+        // Calculate the channel color of each triangle
         Map<Triangle2D, List<DoubleSummaryStatistics>> trianglesPixelsMap = new HashMap<>();
         for(int y = 0; y < bufferedImage.getHeight(); y++){
             for(int x = 0; x < bufferedImage.getWidth(); x++){
                 Vector2D currentPixel = new Vector2D(x, y);
                 for(Triangle2D triangle2D : triangles){
                     if(triangle2D.contains(currentPixel)) {
-                        int color = bufferedImage.getRGB(x, y);
-                        int blue = color & 0xff;
-                        int green = (color & 0xff00) >> 8;
-                        int red = (color & 0xff0000) >> 16;
+                        Color color = new Color(bufferedImage.getRGB(x, y));
                         List<DoubleSummaryStatistics> colorStatistics = Arrays.asList(new DoubleSummaryStatistics(), new DoubleSummaryStatistics(), new DoubleSummaryStatistics());
-                        colorStatistics.get(0).accept(blue);
-                        colorStatistics.get(1).accept(green);
-                        colorStatistics.get(2).accept(red);
+                        colorStatistics.get(0).accept(color.getBlue());
+                        colorStatistics.get(1).accept(color.getGreen());
+                        colorStatistics.get(2).accept(color.getRed());
                         trianglesPixelsMap.put(triangle2D, colorStatistics);
                         break;
                     }
@@ -65,10 +74,7 @@ public class SimpleVoronoi implements Transformer {
             }
         }
 
-        ColorModel cm = bufferedImage.getColorModel();
-        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
-        WritableRaster raster = bufferedImage.copyData(null);
-        BufferedImage returnValue = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+        // Calculate the average color of each triangle
         Map<Triangle2D, Color> trianglesColors = new HashMap<>();
         for (Map.Entry<Triangle2D, List<DoubleSummaryStatistics>> entry : trianglesPixelsMap.entrySet()) {
             DoubleSummaryStatistics sumBlue = entry.getValue().get(0);
@@ -77,6 +83,16 @@ public class SimpleVoronoi implements Transformer {
             trianglesColors.put(entry.getKey(), new Color((int)sumRed.getAverage(), (int)sumGreen.getAverage(), (int)sumBlue.getAverage()));
         }
 
+
+        // Deep copy the input image
+        ColorModel cm = bufferedImage.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = bufferedImage.copyData(null);
+        BufferedImage returnValue = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+
+        // Rendering the output image. Each pixel will obtain the color of its triangle
+        // Because of numerical problem, some pixels will not have an identity
+        // Therefore we give them the color of the nearest triangles
         TriangleCollection triangleCollection = new TriangleCollection(triangles);
         for(int y = 0; y < returnValue.getHeight(); y++) {
             for (int x = 0; x < returnValue.getWidth(); x++) {
