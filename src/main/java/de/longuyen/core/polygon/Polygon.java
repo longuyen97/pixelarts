@@ -11,6 +11,10 @@ import java.awt.image.WritableRaster;
 import java.util.List;
 import java.util.*;
 
+/**
+ * Polygon algorithm. But instead of calculating the RGB distance between centers and its neighbor, this algorithm simply
+ * calculate the euclidean distance on the cartesian coordinating system.
+ */
 public class Polygon implements Transformer {
     protected final Parameters parameters;
 
@@ -18,6 +22,9 @@ public class Polygon implements Transformer {
         this.parameters = parameters;
     }
 
+    /**
+     * Parameter class of Polygon
+     */
     public static class Parameters {
         public final int centers;
         public final int iterations;
@@ -28,13 +35,21 @@ public class Polygon implements Transformer {
         }
     }
 
+    /**
+     * Calculate the new color for each pixel
+     * @param bufferedImage input image
+     * @return a pixel color mapping
+     */
     public Map<List<Point>, Color> generatePoints(final BufferedImage bufferedImage) {
+        // Generating random centers
         List<Point> centers = new ArrayList<>();
         Random random = new Random();
         for(int i = 0; i < Polygon.this.parameters.centers; i++) {
             centers.add(new Point(random.nextInt(bufferedImage.getWidth()), random.nextInt(bufferedImage.getHeight())));
         }
 
+        // Closure
+        // Calculate the neighbors of each center
         ReturnFunction<Map<Point, List<Point>>> calculateIdentity = () -> {
             Map<Point, List<Point>> ret = new HashMap<>();
             for(int y = 0; y < bufferedImage.getHeight(); y++){
@@ -42,11 +57,11 @@ public class Polygon implements Transformer {
                     Point currentPixel = new Point(x, y);
                     Point nearestCenter = centers.get(0);
                     double nearestDistance = centers.get(0).distance(currentPixel);
-                    for(int j = 0; j < centers.size(); j++){
-                        double currentDistance = centers.get(j).distance(currentPixel);
-                        if(currentDistance < nearestDistance){
+                    for (Point center : centers) {
+                        double currentDistance = center.distance(currentPixel);
+                        if (currentDistance < nearestDistance) {
                             nearestDistance = currentDistance;
-                            nearestCenter = centers.get(j);
+                            nearestCenter = center;
                         }
                     }
                     if(!ret.containsKey(nearestCenter)){
@@ -74,6 +89,7 @@ public class Polygon implements Transformer {
             }
         }
 
+        // Update the position of the centers with average position of its neighbors
         Map<Point, List<Point>> identities = calculateIdentity.apply();
         Map<List<Point>, Color> returnValue = new HashMap<>();
         for(Map.Entry<Point, List<Point>> entry : identities.entrySet()){
@@ -100,11 +116,13 @@ public class Polygon implements Transformer {
 
     @Override
     public BufferedImage convert(BufferedImage bufferedImage) {
+        // Deep copy the input to avoid unintended mutation
         ColorModel cm = bufferedImage.getColorModel();
         boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
         WritableRaster raster = bufferedImage.copyData(null);
         BufferedImage returnValue = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
 
+        // Rendering the result
         Map<List<Point>, Color> kmeans = generatePoints(bufferedImage);
         for(Map.Entry<List<Point>, Color> entry : kmeans.entrySet()){
             for(Point2D point : entry.getKey()){

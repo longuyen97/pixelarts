@@ -9,9 +9,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public abstract class Cli implements Runnable {
-    @CommandLine.Parameters(description = "Target image file for triangulating")
+    @CommandLine.Parameters(description = "Target image file for transforming")
     protected String file;
 
+    /**
+     * @return the transformation for this CLI
+     */
     protected abstract Transformer transformer();
 
     @SneakyThrows
