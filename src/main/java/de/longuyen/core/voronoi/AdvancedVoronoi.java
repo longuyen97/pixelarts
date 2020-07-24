@@ -1,6 +1,7 @@
 package de.longuyen.core.voronoi;
 
 import de.longuyen.core.Transformer;
+import de.longuyen.core.convolution.Mean;
 import de.longuyen.core.convolution.Sobel;
 import de.longuyen.core.statistics.InterQuartile;
 import de.longuyen.core.utils.Vector2D;
@@ -30,8 +31,10 @@ public class AdvancedVoronoi extends SimpleVoronoi {
 
     @Override
     public List<Vector2D> generatePoints(BufferedImage bufferedImage) {
-        Transformer convolution = new Sobel(new Sobel.Parameters(this.parameters.times));
-        BufferedImage edgeEnhancedImage = convolution.convert(bufferedImage);
+        Transformer mean = new Mean();
+        Transformer sobel = new Sobel(new Sobel.Parameters(this.parameters.times));
+        BufferedImage blurred = mean.convert(bufferedImage);
+        BufferedImage edgeEnhancedImage = sobel.convert(blurred);
         InterQuartile interQuartile = new InterQuartile(edgeEnhancedImage);
         int Q95 = interQuartile.getPercentile(this.parameters.range);
         List<Vector2D> candidates = new ArrayList<>();
