@@ -6,8 +6,20 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Sobel implements Transformer {
-    @Override
-    public BufferedImage convert(BufferedImage bufferedImage) {
+    private final Parameters parameters;
+
+    public Sobel(Parameters parameters) {
+        this.parameters = parameters;
+    }
+
+    public static class Parameters {
+        private final int times;
+        public Parameters(int times) {
+            this.times = times;
+        }
+    }
+
+    public BufferedImage convolve(BufferedImage bufferedImage){
         SobelHorizontal sobelHorizontal = new SobelHorizontal();
         SobelVertical sobelVertical = new SobelVertical();
         BufferedImage horizontal = sobelHorizontal.convert(bufferedImage);
@@ -28,5 +40,13 @@ public class Sobel implements Transformer {
             }
         }
         return returnValue;
+    }
+
+    @Override
+    public BufferedImage convert(BufferedImage bufferedImage) {
+        for(int i = 0; i < this.parameters.times; i++){
+            bufferedImage = convolve(bufferedImage);
+        }
+        return bufferedImage;
     }
 }

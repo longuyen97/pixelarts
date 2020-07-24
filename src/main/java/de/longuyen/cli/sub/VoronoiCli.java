@@ -8,7 +8,7 @@ import picocli.CommandLine;
 @CommandLine.Command(name = "voronoi", description = "Used to triangulate images")
 public class VoronoiCli extends Cli {
     @CommandLine.Option(names = {"--points", "-p"}, description = "How big should the window's size be", required = true)
-    private int points;
+    protected int points;
 
     @Override
     protected Transformer transformer() {

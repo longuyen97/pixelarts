@@ -13,7 +13,7 @@ import java.io.InputStream;
 public class TestSobel {
     @Test
     void testSobel() throws IOException {
-        Transformer transformer = new Sobel();
+        Transformer transformer = new Sobel(new Sobel.Parameters(1));
         InputStream targetTestImage = TestSobel.class.getResourceAsStream("/sunflower.jpg");
         BufferedImage bi = ImageIO.read(targetTestImage);
         Assertions.assertNotNull(bi);

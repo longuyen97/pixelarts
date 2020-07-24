@@ -1,17 +1,15 @@
 package de.longuyen.core.statistics;
 
-import de.longuyen.core.utils.MutableLong;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.*;
-import java.util.List;
-import java.util.function.ToIntFunction;
+import java.util.HashSet;
+import java.util.Set;
 
 public class InterQuartile {
     private final int Q25;
     private final int Q50;
     private final int Q75;
+    private final int[] distributions;
 
     public InterQuartile(BufferedImage bufferedImage) {
        Set<Integer> grayScales = new HashSet<>();
@@ -26,6 +24,11 @@ public class InterQuartile {
         Q25 = keys[(int) (keys.length * 0.25)];
         Q50 = keys[(int) (keys.length * 0.5)];
         Q75 = keys[(int) (keys.length * 0.75)];
+        this.distributions = keys;
+    }
+
+    public int getPercentile(final double p){
+        return this.distributions[(int)(distributions.length * p)];
     }
 
     public int getQ25() {

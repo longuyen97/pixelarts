@@ -7,7 +7,6 @@ import picocli.CommandLine;
 
 @CommandLine.Command(name = "asciify", description = "Used to asciify images")
 public class AsciifierCli extends Cli {
-
     @CommandLine.Option(names = {"--interpolation", "-i"}, description = "How much should the image be interpolated")
     private int interpolation = 3;
 
