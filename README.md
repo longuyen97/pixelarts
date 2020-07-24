@@ -24,8 +24,8 @@ Algorithm for playing around with images. Take a moment for a pause and a deep b
 
 <table border="1" width="100%">
     <tr>
-        <td><img src="images/cumberbatch.jpg" width="500"></td>
-        <td><img src="images/cumberbatch-output.jpg" width="500"></td>
+        <td><img src="images/doom.jpg" width="500"></td>
+        <td><img src="images/doom-output.jpg" width="500"></td>
     </tr>
     <tr>
         <td><img src="images/geralt.png" width="500"></td>
