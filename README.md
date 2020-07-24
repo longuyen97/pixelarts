@@ -15,7 +15,7 @@ Algorithm for playing around with images. Take a moment for a pause.
     </tr>
     <tr>
         <td><img src="images/ritchie.jpg" width="500"></td>
-        <td><img src="images/ritchie-output.png" width="500"></td>
+        <td><img src="images/ritchie-output.jpg" width="500"></td>
     </tr>
 </table>
 

@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public abstract class Cli implements Runnable {
-    @CommandLine.Option(names = {"--file", "-f"}, description = "Target image file for triangulating", required = true)
+    @CommandLine.Parameters(description = "Target image file for triangulating")
     protected String file;
 
     protected abstract Transformer transformer();
