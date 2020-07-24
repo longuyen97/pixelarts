@@ -28,12 +28,12 @@ Algorithm for playing around with images. Take a moment for a pause and a deep b
         <td><img src="images/cumberbatch-output.jpg" width="500"></td>
     </tr>
     <tr>
-        <td><img src="images/hendrix.jpg" width="500"></td>
-        <td><img src="images/hendrix-output.png" width="500"></td>
+        <td><img src="images/geralt.png" width="500"></td>
+        <td><img src="images/geralt-output.png" width="500"></td>
     </tr>
     <tr>
-        <td><img src="images/ritchie.jpg" width="500"></td>
-        <td><img src="images/ritchie-output.jpg" width="500"></td>
+        <td><img src="images/tsushima.jpg" width="500"></td>
+        <td><img src="images/tsushima-output.jpg" width="500"></td>
     </tr>
 </table>
 
